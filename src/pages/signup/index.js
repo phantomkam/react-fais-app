@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { Col, FormControl, FormGroup, Button, Checkbox, Modal } from 'react-bootstrap'
+import { Col, FormControl, FormGroup, Button, Modal } from 'react-bootstrap'
 export default class Signup extends React.Component {
 	constructor(props) {
 		super(props);
@@ -24,16 +24,20 @@ export default class Signup extends React.Component {
 	}
 
 	onSubmit = (evt) => {
+		console.log(this.state.form);
 		evt.preventDefault();
 		let self = this;
-		axios.post(`http://localhost:3003/api/register`, this.state.form)
+		const headers = {
+			'Content-Type': 'text/plain'
+		};
+		axios.post(`http://159.223.105.174/api/auth/register`, this.state.form, {headers})
 			.then(function (response) {
 				console.log(response);
 				if (response.data.status === 200)
 					self.setState({ show: true });
 			})
 			.catch(function (error) {
-				console.log(error);
+				console.log(error.response);
 			});
 	}
 	login = () => {

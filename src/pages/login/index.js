@@ -25,7 +25,10 @@ class Login extends React.Component {
 
 	onSubmit = (evt) => {
 		evt.preventDefault();
-		axios.post(`http://localhost:3003/api/login`, this.state.form)
+		const headers = {
+			'Content-Type': 'text/plain'
+		};
+		axios.post(`http://159.223.105.174/api/auth/login`, this.state.form, {headers})
 			.then(res => {
 				sessionStorage.setItem('token', res.data.token);
 				sessionStorage.setItem('role', res.data.role);
@@ -54,7 +57,7 @@ class Login extends React.Component {
 						</FormGroup>
 						<FormGroup>
 							<Col className='text-center'>
-								<Link to="/Signup">Not a member?</Link>
+								<Link to="/register">Not a member?</Link>
 							</Col>
 						</FormGroup>
 					</form>
