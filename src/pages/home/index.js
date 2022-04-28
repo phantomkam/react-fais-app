@@ -3,11 +3,11 @@ import { Redirect } from 'react-router-dom'
 import decode from 'jwt-decode';
 import { getNotes } from '../../functions/notes';
 
-function Home() {
+function Home(props) {
   const [notes, setNotes] = useState([]);
 
   const login = () => {
-    this.props.history.push('/login')
+    props.history.push('/login')
   }
 
   const checkAdmin = () => {
