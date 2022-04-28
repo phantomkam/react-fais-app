@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 export function getNotes() {
-    return axios.get('http://localhost:2400/api/notes')
+    return axios.get('https://majedra.tk/api/notes')
         .then(response => response.data)
         .catch(error => {
             console.error(`Error fetching notes: ${error}`);
@@ -9,7 +9,7 @@ export function getNotes() {
 }
 
 export function setOneNote(note) {
-    return axios('http://localhost:2400/api/notes', {
+    return axios('https://majedra.tk/api/notes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
