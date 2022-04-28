@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { withRouter } from 'react-router'
+import config from '../../config'
 
 import { Col, FormControl, FormGroup, Button, Checkbox } from 'react-bootstrap'
 class Login extends React.Component {
@@ -28,11 +29,11 @@ class Login extends React.Component {
 		const headers = {
 			'Content-Type': 'application/json'
 		};
-		axios.post(`https://majedra.tk/api/auth/login`, this.state.form, {headers})
+		let self = this;
+		axios.post(`${config.server_url}/api/auth/login`, this.state.form, {headers})
 			.then(res => {
 				sessionStorage.setItem('token', res.data.token);
-				sessionStorage.setItem('role', res.data.role);
-				this.props.history.push('/');
+				self.props.history.push('/');
 			})
 
 			.catch(function (error) {

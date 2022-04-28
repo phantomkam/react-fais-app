@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Col, FormControl, FormGroup, Button, Modal } from 'react-bootstrap'
+import config from '../../config'
+
 export default class Signup extends React.Component {
 	constructor(props) {
 		super(props);
@@ -30,9 +32,8 @@ export default class Signup extends React.Component {
 		const headers = {
 			'Content-Type': 'application/json'
 		};
-		axios.post(`https://majedra.tk/api/auth/register`, this.state.form, {headers})
+		axios.post(`${config.server_url}/auth/register`, this.state.form, {headers})
 			.then(function (response) {
-				console.log(response);
 				if (response.data.status === 200)
 					self.setState({ show: true });
 			})
