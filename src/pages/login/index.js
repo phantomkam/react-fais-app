@@ -28,7 +28,7 @@ class Login extends React.Component {
 		const headers = {
 			'Content-Type': 'text/plain'
 		};
-		axios.post(`http://159.223.105.174/api/auth/login`, this.state.form, {headers})
+		axios.post(`https://majedra.tk/api/auth/login`, this.state.form, {headers})
 			.then(res => {
 				sessionStorage.setItem('token', res.data.token);
 				sessionStorage.setItem('role', res.data.role);

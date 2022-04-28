@@ -30,7 +30,7 @@ export default class Signup extends React.Component {
 		const headers = {
 			'Content-Type': 'text/plain'
 		};
-		axios.post(`http://159.223.105.174/api/auth/register`, this.state.form, {headers})
+		axios.post(`https://majedra.tk/api/auth/register`, this.state.form, {headers})
 			.then(function (response) {
 				console.log(response);
 				if (response.data.status === 200)
