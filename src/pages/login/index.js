@@ -26,7 +26,7 @@ class Login extends React.Component {
 	onSubmit = (evt) => {
 		evt.preventDefault();
 		const headers = {
-			'Content-Type': 'text/plain'
+			'Content-Type': 'application/json'
 		};
 		axios.post(`https://majedra.tk/api/auth/login`, this.state.form, {headers})
 			.then(res => {

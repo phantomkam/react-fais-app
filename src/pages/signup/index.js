@@ -28,7 +28,7 @@ export default class Signup extends React.Component {
 		evt.preventDefault();
 		let self = this;
 		const headers = {
-			'Content-Type': 'text/plain'
+			'Content-Type': 'application/json'
 		};
 		axios.post(`https://majedra.tk/api/auth/register`, this.state.form, {headers})
 			.then(function (response) {
