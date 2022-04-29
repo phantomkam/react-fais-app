@@ -31,8 +31,14 @@ class Login extends React.Component {
 		let self = this;
 		axios.post(`${config.server_url}/api/auth/login`, this.state.form, {headers})
 			.then(res => {
-				sessionStorage.setItem('token', res.data.token);
-				self.props.history.push('/');
+				if(res.status === 200) {
+					if(res.data.state) {
+						sessionStorage.setItem('token', res.data.token);
+						self.props.history.push('/');
+					} else {
+						alert(res.data.message)
+					}
+				}
 			})
 
 			.catch(function (error) {
