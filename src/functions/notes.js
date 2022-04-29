@@ -1,7 +1,15 @@
+import config from '../config'
+
 const axios = require('axios');
 
 export function getNotes() {
-    return axios.get('https://majedra.tk/api/notes')
+    const conf = {
+        headers:{
+          authorization: sessionStorage.getItem('token'),
+        }
+    };
+    
+    return axios.get(`${config.server_url}/api/notes`, conf)
         .then(response => response.data)
         .catch(error => {
             console.error(`Error fetching notes: ${error}`);
@@ -9,7 +17,7 @@ export function getNotes() {
 }
 
 export function setOneNote(note) {
-    return axios('https://majedra.tk/api/notes', {
+    return axios(`${config.server_url}/api/notes`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

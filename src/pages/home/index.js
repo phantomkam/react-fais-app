@@ -6,7 +6,8 @@ import { getNotes } from '../../functions/notes';
 function Home(props) {
   const [notes, setNotes] = useState([]);
 
-  const login = () => {
+  const logout = () => {
+    localStorage.removeItem('token');
     props.history.push('/login')
   }
 
@@ -34,9 +35,20 @@ function Home(props) {
   return checkAdmin() ? (
     <Redirect to={{ pathname: '/admin' }} />
   ) : (
-    <div>
+    <div className='container'>
       <h1>Home</h1>
-      <p><button onClick={login}>Logout</button></p>
+      <hr/>
+      <h3>Notes</h3>
+      <a href='/notes/add'>+Add</a>
+      <ul className='list-group'>
+        { notes.map((note, key) => 
+          <li className='list-group-item' key={key}>
+            <h5>{note.title}</h5>
+            <p>{note.content}</p>
+          </li>
+        )}
+      </ul>
+      <p><button onClick={logout}>Logout</button></p>
     </div>
   )
 }
