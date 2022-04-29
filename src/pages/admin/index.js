@@ -7,11 +7,6 @@ class Admin extends React.Component {
         this.props.history.push('/login')
     }
 
-    checkAuth = () => {
-        const token = sessionStorage.getItem('token');
-        return !!token
-    }
-
     checkAdmin = () => {
         const token = sessionStorage.getItem('token');
         if(!token) return false;

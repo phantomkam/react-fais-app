@@ -6,6 +6,8 @@ import Home from '../pages/home'
 import Login from '../pages/login'
 import Signup from '../pages/signup'
 import Notes from '../pages/notes'
+import AddNote from '../pages/notes/add'
+import EditNote from '../pages/notes/edit'
 
 function App() {
 
@@ -31,7 +33,9 @@ function App() {
       <Route exact path="/register" render={props => <Signup {...props} />} />
       <AuthRoute exact path="/" component={Home} />
       <AuthRoute exact path="/admin" render={props => <Admin {...props} />} />
-      <AuthRoute path="/notes" component={Notes} />
+      <AuthRoute exact path="/notes" component={Notes} />
+      <AuthRoute exact path="/notes/add" component={AddNote} />
+      <AuthRoute path="/notes/edit/:id" component={EditNote} />
     </Switch>
   </BrowserRouter>
   )

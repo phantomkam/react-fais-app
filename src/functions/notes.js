@@ -1,4 +1,5 @@
 import config from '../config'
+import decode from 'jwt-decode';
 
 const axios = require('axios');
 
@@ -26,3 +27,5 @@ export function setOneNote(note) {
     })
         .then(response => response.data)
 }
+
+export const decodedToken = sessionStorage.getItem('token') ? decode(sessionStorage.getItem('token')) : '';

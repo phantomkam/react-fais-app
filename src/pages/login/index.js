@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import { withRouter } from 'react-router'
 import config from '../../config'
+import { Col, FormControl, FormGroup, Button } from 'react-bootstrap'
 
-import { Col, FormControl, FormGroup, Button, Checkbox } from 'react-bootstrap'
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -67,4 +66,4 @@ class Login extends React.Component {
 		)
 	}
 }
-export default withRouter(Login)
+export default Login
