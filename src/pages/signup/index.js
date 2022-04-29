@@ -32,7 +32,7 @@ export default class Signup extends React.Component {
 		const headers = {
 			'Content-Type': 'application/json'
 		};
-		axios.post(`${config.server_url}/auth/register`, this.state.form, {headers})
+		axios.post(`${config.server_url}/api/auth/register`, this.state.form, {headers})
 			.then(function (response) {
 				if (response.data.status === 200)
 					self.setState({ show: true });
