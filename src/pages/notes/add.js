@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { decodedToken } from '../../functions/notes';
+import { decodedToken } from '../../functions';
 import config from '../../config'
 
 const axios = require('axios');
@@ -13,7 +13,7 @@ function AddNote(props) {
     });
 
     const logout = () => {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         props.history.push('/login')
     }
 

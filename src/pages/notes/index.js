@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import decode from 'jwt-decode';
-import { getNotes } from '../../functions/notes';
+import { getNotes } from '../../functions';
 
 function Notes(props) {
     const [notes, setNotes] = useState([]);
 
-    const login = () => {
+    const logout = () => {
+        sessionStorage.removeItem('token')
         props.history.push('/login')
     }
 
@@ -42,7 +43,7 @@ function Notes(props) {
                     <li key={key}> {note.title} </li>
                 )}
             </ul>
-            <p><button onClick={login}>Logout</button></p>
+            <p><button onClick={logout}>Logout</button></p>
         </div>
     )
 }

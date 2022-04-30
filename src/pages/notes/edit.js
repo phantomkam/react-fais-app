@@ -43,7 +43,7 @@ function EditNote(props) {
     }
 
     const logout = () => {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         props.history.push('/login')
     }
 
@@ -73,7 +73,7 @@ function EditNote(props) {
         axios.put(`${config.server_url}/api/notes/update/${id}`, tmpnote, conf)
             .then(res => {
                 if (res.status === 200) {
-                    alert('Successfully added!')
+                    alert('Successfully updated!')
                     setTmpnote({
                         title: res.data.title,
                         content: res.data.content

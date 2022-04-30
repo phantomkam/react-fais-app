@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { getNotes, decodedToken } from '../../functions/notes';
+import { getNotes, decodedToken } from '../../functions';
 import config from '../../config'
 import axios from 'axios';
 
 function Home(props) {
   const [notes, setNotes] = useState([]);
-  const [removed, setRemoved] = useState(false);
 
   const logout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     props.history.push('/login')
   }
 
@@ -53,12 +52,15 @@ function Home(props) {
         console.log(error);
       });
   }
+
+  const goProfile = () => {
+    props.history.push(`/profile`)
+  }
   
   useEffect(() => {
     let mounted = true;
     getNotes()
       .then(items => {
-        console.log(items);
         if (mounted) {
           setNotes(items)
         }
@@ -70,7 +72,7 @@ function Home(props) {
     <Redirect to={{ pathname: '/admin' }} />
   ) : (
     <div className='container'>
-      <h1>Home</h1>
+      <h1>Home <button className='btn btn-sm btn-default pull-right' onClick={logout}>Logout</button> <button className='btn btn-sm btn-default pull-right' onClick={ goProfile } style={{ marginRight: 15 }}>Profile</button></h1>
       <hr />
       <h3>Notes</h3>
       <p className='text-right'>
@@ -97,7 +99,6 @@ function Home(props) {
           )}
         </tbody>
       </table>
-      <p><button onClick={logout}>Logout</button></p>
     </div>
   )
 }

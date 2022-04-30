@@ -28,13 +28,12 @@ class Login extends React.Component {
 		const headers = {
 			'Content-Type': 'application/json'
 		};
-		let self = this;
 		axios.post(`${config.server_url}/api/auth/login`, this.state.form, {headers})
 			.then(res => {
 				if(res.status === 200) {
 					if(res.data.state) {
 						sessionStorage.setItem('token', res.data.token);
-						self.props.history.push('/');
+						window.location.href = '/'
 					} else {
 						alert(res.data.message)
 					}
